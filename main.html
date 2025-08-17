@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RespAI - AI-Powered Firefighter Health Monitoring</title>
+  <meta name="description" content="RespAI builds AI-powered wearables for real-time, personalized monitoring of firefighters' exposure to cancer-causing substances.">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fafafa;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #D23527;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #D23527;
+    }
+
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #333;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #D23527, #b82e20);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #1e3a5f;
+    }
+
+    /* Stats Section */
+    .stats {
+      background: #f8f9fa;
+      padding: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+      color: #D23527;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .stat-item p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #1e3a5f;
+      font-weight: 700;
+    }
+
+    .section::after {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 60px;
+      background: #D23527;
+      margin: 2rem auto 0;
+      border-radius: 3px;
+    }
+
+    .section-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    /* Problem Section */
+    .problem {
+      background: #fff;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .problem-item {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+
+    .problem-item i {
+      font-size: 3rem;
+      color: #D23527;
+      margin-bottom: 1rem;
+    }
+
+    .problem-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1e3a5f;
+      font-weight: 600;
+    }
+
+    /* Solution Section */
+    .solution {
+      background: #f8f9fa;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      color: #D23527;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #1e3a5f;
+      font-weight: 600;
+    }
+
+    /* Technology Section */
+    .technology {
+      background: #1e3a5f;
+      color: white;
+    }
+
+    .technology h2 {
+      color: white;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .tech-item {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .tech-item i {
+      font-size: 2.5rem;
+      color: #D23527;
+      margin-bottom: 1rem;
+    }
+
+    .tech-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    /* Market Impact Section */
+    .market {
+      background: #fff;
+    }
+
+    .pilot-highlight {
+      background: linear-gradient(135deg, #D23527, #b82e20);
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .pilot-highlight h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: #f8f9fa;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e1e5e9;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #D23527;
+      box-shadow: 0 0 8px rgba(210,53,39,0.3);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e3a5f;
+      color: white;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: none;
+      text-align: center;
+      color: #D23527;
+    }
+
+    .success-message {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .error-message {
+      display: none;
+      background: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="C:\Users\Racool\Desktop\RespAI\website\Screenshot 2025-08-16 141611.png" alt="RespAI Logo">
+                RespAI
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#market">Impact</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Protecting Those Who Protect Us</h1>
+                <p>AI-powered wearables providing real-time, personalized monitoring of firefighters' exposure to cancer-causing substances. Built by firefighters, for firefighters.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                    <a href="#solution" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>6M+</h3>
+                        <p>Firefighters Globally</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>30+</h3>
+                        <p>Departments Researched</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>9%</h3>
+                        <p>Higher Cancer Risk</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1st</h3>
+                        <p>Pilot with CBS Fire Dept</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem" class="section problem">
+            <div class="container">
+                <h2>The Critical Health Crisis</h2>
+                <div class="section-content">
+                    <p>Firefighters face a 9% higher risk of cancer diagnosis and 14% higher risk of cancer-related death compared to the general population. Current monitoring methods are outdated, manual, and provide only department-level data instead of personalized health insights.</p>
+                </div>
+                <div class="problem-grid">
+                    <div class="problem-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Limited Monitoring</h3>
+                        <p>Current methods rely on manual logging and provide vague, department-level exposure data rather than individual risk assessment.</p>
+                    </div>
+                    <div class="problem-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>Reactive Approach</h3>
+                        <p>Health issues are addressed after symptoms appear, missing crucial early intervention opportunities.</p>
+                    </div>
+                    <div class="problem-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Rising Cancer Rates</h3>
+                        <p>Firefighter cancer rates continue to climb due to increased exposure to modern synthetic materials and chemicals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section id="solution" class="section solution">
+            <div class="container">
+                <h2>Our AI-Powered Solution</h2>
+                <div class="section-content">
+                    <p>RespAI integrates wearable environmental sensors with intelligent software to provide real-time exposure tracking, personalized health profiles, and AI-driven cancer risk assessments with proactive screening recommendations.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-sensor"></i>
+                        <h3>Real-Time Monitoring</h3>
+                        <p>Advanced sensors track exposure to carcinogens, toxic gases, smoke, and heat in real-time during firefighting operations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Personalized Profiles</h3>
+                        <p>Individual health profiles store cumulative exposure data and track long-term risk factors for each firefighter.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Risk Assessment</h3>
+                        <p>Machine learning algorithms analyze exposure patterns and recommend personalized preventive actions and early screenings.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Department Insights</h3>
+                        <p>Comprehensive dashboards provide department-level analytics while maintaining individual privacy and health data security.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="technology" class="section technology">
+            <div class="container">
+                <h2>Advanced Technology Stack</h2>
+                <div class="section-content">
+                    <p>Our platform combines cutting-edge sensor technology with sophisticated AI algorithms, designed specifically for the demanding firefighting environment.</p>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <i class="fas fa-microchip"></i>
+                        <h4>NDITIVE Sensor Integration</h4>
+                        <p>Partnership with NDITIVE for seamless integration into existing firefighting gear</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-robot"></i>
+                        <h4>Machine Learning</h4>
+                        <p>AI models trained on environmental and medical datasets for accurate risk prediction</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Data Security</h4>
+                        <p>Enterprise-grade security protecting sensitive health information and personal data</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Mobile & Web Platform</h4>
+                        <p>Accessible dashboards for firefighters and administrators on any device</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Impact Section -->
+        <section id="market" class="section market">
+            <div class="container">
+                <h2>Proven Impact & Market Reach</h2>
+                <div class="section-content">
+                    <p>With over 6 million firefighters globally and growing awareness of occupational health risks, RespAI addresses a critical market need with significant growth potential.</p>
+                </div>
+                
+                <div class="pilot-highlight">
+                    <h3>🚀 First Pilot Program Launch</h3>
+                    <p>We're proud to announce our first pilot program with CBS Fire Department, backed by a Letter of Intent. This milestone represents the transition from research to real-world implementation.</p>
+                </div>
+                
+                <div class="section-content">
+                    <p>Our research with 30+ fire departments across Canada has provided valuable insights and positive feedback from both firefighter unions and management. This extensive user research, combined with our upcoming CBS Fire Department pilot, demonstrates real market validation and readiness for scale.</p>
+                    
+                    <p><strong>Market Opportunity:</strong> With a subscription model at $200 per user annually, achieving just 5% global market penetration would generate $150M in initial revenue with $60M+ in annual recurring revenue.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="section-content">
+                    <p>Ready to protect your firefighters with cutting-edge health monitoring technology? Contact us to learn more about RespAI and discuss how we can support your department.</p>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization/Department *</label>
+                        <input type="text" id="organization" name="organization" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Your Role *</label>
+                        <select id="role" name="role" required>
+                            <option value="">Select your role</option>
+                            <option value="Fire Chief">Fire Chief</option>
+                            <option value="Deputy Chief">Deputy Chief</option>
+                            <option value="Safety Officer">Safety Officer</option>
+                            <option value="Captain">Captain</option>
+                            <option value="Lieutenant">Lieutenant</option>
+                            <option value="Firefighter">Firefighter</option>
+                            <option value="Administrator">Administrator</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your department's needs, questions about RespAI, or how we can help..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div class="loading" id="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Sending message...
+                    </div>
+                    <div class="success-message" id="successMessage">
+                        Thank you for your message! We'll get back to you within 24 hours.
+                    </div>
+                    <div class="error-message" id="errorMessage">
+                        Sorry, there was an error sending your message. Please try again or email us directly at abdulmujeeba@mun.ca.
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 RespAI. All rights reserved. | Protecting firefighters with AI-powered health monitoring.</p>
+            <p>Built by firefighters, for firefighters.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("5292bQVI1wiHyuhKp"); // Replace with your actual Public Key
+    })();
+
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const loading = document.getElementById('loading');
+      const successMessage = document.getElementById('successMessage');
+      const errorMessage = document.getElementById('errorMessage');
+
+      successMessage.style.display = 'none';
+      errorMessage.style.display = 'none';
+      loading.style.display = 'block';
+
+      const templateParams = {
+        name: document.getElementById("name").value,
+        organization: document.getElementById("organization").value,
+        role: document.getElementById("role").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        message: document.getElementById("message").value
+      };
+
+      emailjs.send("service_51yxzml", "template_7o5sm1p", templateParams)
+        .then(() => {
+          loading.style.display = 'none';
+          successMessage.style.display = 'block';
+          document.getElementById('contactForm').reset();
+        })
+        .catch((err) => {
+          loading.style.display = 'none';
+          errorMessage.style.display = 'block';
+          console.error("EmailJS Error:", err);
+        });
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.backdropFilter = 'blur(10px)';
+      } else {
+        header.style.background = '#fff';
+        header.style.backdropFilter = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
