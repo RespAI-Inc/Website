@@ -86,6 +86,46 @@
       cursor: pointer;
     }
 
+    /* Mobile Sidebar Menu */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start hidden offscreen */
+        height: 100vh;
+        width: 200px; /* Smaller width */
+        background: #fff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem; /* Smaller gap */
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s ease-in-out; /* Smooth slide */
+        z-index: 9999;
+        padding: 2rem 1rem; /* Add padding for better spacing */
+      }
+      .nav-links.active {
+        right: 0; /* Slide in */
+      }
+      .nav-links a {
+        font-size: 0.95rem; /* Smaller font size */
+        padding: 0.75rem 1.5rem; /* Add padding for better touch targets */
+        width: 100%;
+        text-align: center;
+        border-radius: 8px; /* Rounded corners */
+        transition: all 0.3s ease;
+      }
+      .nav-links a:hover {
+        background: rgba(210, 53, 39, 0.1); /* Light red background on hover */
+        color: #D23527;
+      }
+      .mobile-menu {
+        display: block;
+        z-index: 10000;
+        position: relative;
+      }
+    }
+
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
@@ -326,19 +366,118 @@
     .pilot-highlight {
       background: linear-gradient(135deg, #D23527, #b82e20);
       color: white;
-      padding: 2rem;
-      border-radius: 12px;
+      padding: 2.5rem;
+      border-radius: 16px;
       margin: 2rem 0;
       text-align: center;
+      box-shadow: 0 8px 25px rgba(210, 53, 39, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pilot-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
     }
 
     .pilot-highlight h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    /* Contact Section */
+    .pilot-highlight p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .pilot-highlight p:last-child {
+      margin-bottom: 0;
+    }
+
+    .pilot-subtitle {
+      font-size: 1rem !important;
+      font-style: italic;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    /* Team Section */
+    .team {
+      background: #fff;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .team-member {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      background: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .member-photo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #D23527;
+      box-shadow: 0 4px 15px rgba(210, 53, 39, 0.2);
+    }
+
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-member h3 {
+      font-size: 1.4rem;
+      color: #1e3a5f;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .member-role {
+      font-size: 1rem;
+      color: #D23527;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .member-credentials {
+      font-size: 0.9rem;
+      color: #666;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .member-bio {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
     .contact {
       background: #f8f9fa;
     }
@@ -397,14 +536,6 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu {
-        display: block;
-      }
-
       .hero h1 {
         font-size: 2.5rem;
       }
@@ -458,7 +589,7 @@
     <header>
         <nav class="container">
             <div class="logo">
-               <img src="Screenshot 2025-08-16 141611.png" alt="RespAI Logo">
+                <img src="C:\Users\Racool\Desktop\RespAI\website\Screenshot 2025-08-16 141611.png" alt="RespAI Logo">
                 RespAI
             </div>
             <ul class="nav-links">
@@ -467,6 +598,7 @@
                 <li><a href="#solution">Solution</a></li>
                 <li><a href="#technology">Technology</a></li>
                 <li><a href="#market">Impact</a></li>
+                <li><a href="#team">Team</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu" onclick="toggleMenu()">
@@ -612,14 +744,46 @@
                 </div>
                 
                 <div class="pilot-highlight">
-                    <h3>🚀 First Pilot Program Launch</h3>
-                    <p>We're proud to announce our first pilot program with CBS Fire Department, backed by a Letter of Intent. This milestone represents the transition from research to real-world implementation.</p>
+                    <div class="pilot-icon">🚀</div>
+                    <h3>First Pilot Program Launch</h3>
+                    <p>We're proud to announce our <strong>first pilot program with CBS Fire Department</strong>, backed by a Letter of Intent.</p>
+                    <p class="pilot-subtitle">This milestone represents the transition from research to real-world implementation.</p>
                 </div>
                 
                 <div class="section-content">
                     <p>Our research with 30+ fire departments across Canada has provided valuable insights and positive feedback from both firefighter unions and management. This extensive user research, combined with our upcoming CBS Fire Department pilot, demonstrates real market validation and readiness for scale.</p>
                     
                     <p><strong>Market Opportunity:</strong> With a subscription model at $200 per user annually, achieving just 5% global market penetration would generate $150M in initial revenue with $60M+ in annual recurring revenue.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section team">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <div class="section-content">
+                    <p>Built by firefighters, for firefighters. Our team combines frontline firefighting experience with cutting-edge AI expertise to create solutions that truly understand the challenges you face.</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="C:\Users\Racool\Desktop\RespAI\website\Bryce.png" alt="Co-Founder Name - Co-Founder & CEO">
+                        </div>
+                        <h3>Bryce Mulley</h3>
+                        <p class="member-role">Co-Founder & CEO</p>
+                        <p class="member-credentials">Firefighter | AI Researcher</p>
+                        <p class="member-bio">Firefighter with 7+ years of frontline experience. Witnessed firsthand the health challenges facing our firefighting community and dedicated to creating technology that protects those who protect us.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="C:\Users\Racool\Desktop\RespAI\website\Mujeeb.png" alt="Co-Founder Name - Co-Founder & CTO">
+                        </div>
+                        <h3>Abdulwaheed Abdulmujeeb</h3>
+                        <p class="member-role">Co-Founder & CTO</p>
+                        <p class="member-credentials">AI/ML Engineer | Tech Lead</p>
+                        <p class="member-bio">AI and machine learning specialist with expertise in sensor integration and predictive health analytics. Passionate about leveraging technology to solve real-world safety challenges.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -696,8 +860,16 @@
 
     function toggleMenu() {
       const navLinks = document.querySelector('.nav-links');
-      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      navLinks.classList.toggle('active');
     }
+
+    // Close mobile menu when navigation link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.remove('active');
+      });
+    });
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -760,4 +932,3 @@
   </script>
 </body>
 </html>
-
