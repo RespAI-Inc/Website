@@ -437,6 +437,10 @@
       background: #fff;
       transition: transform 0.3s, box-shadow 0.3s;
       border: 1px solid rgba(0,0,0,0.05);
+      display: block;
+      text-decoration: none !important; /* removes underline */
+      color: inherit; /* keeps normal text color */
+      cursor: pointer;
     }
 
     .team-member:hover {
@@ -466,7 +470,9 @@
       margin-bottom: 0.5rem;
       font-weight: 700;
     }
-
+    .team-member p {
+      text-decoration: none !important; /* extra safety */
+    }
     .member-role {
       font-size: 1rem;
       color: #D23527;
@@ -946,6 +952,7 @@
   </script>
 </body>
 </html>
+
 
 
 
