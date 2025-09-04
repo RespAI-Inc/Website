@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-52VVSE0BPG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PRHCRJ0MBL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-52VVSE0BPG');
-</script>
+    gtag('config', 'G-PRHCRJ0MBL');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RespAI - AI-Powered Firefighter Health Monitoring</title>
@@ -35,6 +35,23 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+    }
+    .more-btn {
+      margin-top: 1rem;
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      background: #0a66c2; /* LinkedIn blue */
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .more-btn:hover {
+      background: #004182;
+      transform: translateY(-2px);
     }
 
     /* Header */
@@ -783,7 +800,7 @@
                 <div class="team-grid">
                     
                     <!-- Bryce -->
-                    <a href="https://www.linkedin.com/in/brycemulley" target="_blank" class="team-member">
+                    <div class="team-member">
                         <div class="member-photo">
                             <img src="Bryce.png" alt="Bryce Mulley - Co-Founder & CEO">
                         </div>
@@ -791,10 +808,13 @@
                         <p class="member-role">Co-Founder & CEO</p>
                         <p class="member-credentials">Firefighter | AI Researcher</p>
                         <p class="member-bio">Firefighter with 7+ years of frontline experience. Witnessed firsthand the health challenges facing our firefighting community and dedicated to creating technology that protects those who protect us.</p>
-                    </a>
+                        <a href="https://www.linkedin.com/in/brycemulley" target="_blank" class="btn more-btn">
+                            <i class="fab fa-linkedin"></i> More
+                        </a>
+                    </div>
 
                     <!-- Mujeeb -->
-                    <a href="https://www.linkedin.com/in/abdulmujeeb-abdulwaheed-a40148296/" target="_blank" class="team-member">
+                    <div class="team-member">
                         <div class="member-photo">
                             <img src="Mujeeb.png" alt="Abdulwaheed Abdulmujeeb - Co-Founder & CTO">
                         </div>
@@ -802,11 +822,15 @@
                         <p class="member-role">Co-Founder & CTO</p>
                         <p class="member-credentials">AI/ML Engineer | Tech Lead</p>
                         <p class="member-bio">AI and machine learning specialist with expertise in sensor integration and predictive health analytics. Passionate about leveraging technology to solve real-world safety challenges.</p>
-                    </a>
+                        <a href="https://www.linkedin.com/in/abdulmujeeb-abdulwaheed-a40148296/" target="_blank" class="btn more-btn">
+                            <i class="fab fa-linkedin"></i> More
+                        </a>
+                    </div>
 
                 </div>
             </div>
         </section>
+
 
         <!-- Contact Section -->
         <section id="contact" class="section contact">
@@ -952,11 +976,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
