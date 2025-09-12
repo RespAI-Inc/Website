@@ -839,7 +839,13 @@
                 <div class="section-content">
                     <p>Ready to protect your firefighters with cutting-edge health monitoring technology? Contact us to learn more about RespAI and discuss how we can support your department.</p>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" action="https://formsubmit.co/abdulmujeeb@respai.ca" method="POST">
+                    <!-- FormSubmit configuration -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission - RespAI">
+                    <input type="hidden" name="_next" value="https://respai.ca#contact">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -882,7 +888,7 @@
                         Thank you for your message! We'll get back to you within 24 hours.
                     </div>
                     <div class="error-message" id="errorMessage">
-                        Sorry, there was an error sending your message. Please try again or email us directly at abdulmujeeba@mun.ca.
+                        Sorry, there was an error sending your message. Please try again or email us directly at abdulmujeeb@respai.ca.
                     </div>
                 </form>
             </div>
@@ -896,11 +902,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    (function() {
-      emailjs.init("5292bQVI1wiHyuhKp"); // Replace with your actual Public Key
-    })();
 
     function toggleMenu() {
       const navLinks = document.querySelector('.nav-links');
@@ -916,36 +918,22 @@
     });
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
       const loading = document.getElementById('loading');
       const successMessage = document.getElementById('successMessage');
       const errorMessage = document.getElementById('errorMessage');
 
+      // Hide previous messages
       successMessage.style.display = 'none';
       errorMessage.style.display = 'none';
       loading.style.display = 'block';
 
-      const templateParams = {
-        name: document.getElementById("name").value,
-        organization: document.getElementById("organization").value,
-        role: document.getElementById("role").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        message: document.getElementById("message").value
-      };
-
-      emailjs.send("service_51yxzml", "template_7o5sm1p", templateParams)
-        .then(() => {
-          loading.style.display = 'none';
-          successMessage.style.display = 'block';
-          document.getElementById('contactForm').reset();
-        })
-        .catch((err) => {
-          loading.style.display = 'none';
-          errorMessage.style.display = 'block';
-          console.error("EmailJS Error:", err);
-        });
+      // FormSubmit will handle the submission automatically
+      // We'll show success message after a short delay
+      setTimeout(() => {
+        loading.style.display = 'none';
+        successMessage.style.display = 'block';
+        document.getElementById('contactForm').reset();
+      }, 2000);
     });
 
     // Smooth scrolling
