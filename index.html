@@ -839,12 +839,8 @@
                 <div class="section-content">
                     <p>Ready to protect your firefighters with cutting-edge health monitoring technology? Contact us to learn more about RespAI and discuss how we can support your department.</p>
                 </div>
-                <form class="contact-form" id="contactForm" action="https://formsubmit.co/abdulmujeeb@respai.ca" method="POST">
-                    <!-- FormSubmit configuration -->
-                    <input type="hidden" name="_subject" value="New Contact Form Submission - RespAI">
-                    <input type="hidden" name="_next" value="https://respai.ca#contact">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
+                <form class="contact-form" id="contactForm">
+                    <!-- We'll handle this with JavaScript -->
                     
                     <div class="form-group">
                         <label for="name">Full Name *</label>
@@ -918,6 +914,8 @@
     });
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
       const loading = document.getElementById('loading');
       const successMessage = document.getElementById('successMessage');
       const errorMessage = document.getElementById('errorMessage');
@@ -927,13 +925,37 @@
       errorMessage.style.display = 'none';
       loading.style.display = 'block';
 
-      // FormSubmit will handle the submission automatically
-      // We'll show success message after a short delay
+      // Get form data
+      const name = document.getElementById("name").value;
+      const organization = document.getElementById("organization").value;
+      const role = document.getElementById("role").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const message = document.getElementById("message").value;
+
+      // Create email content
+      const subject = "New Contact Form Submission - RespAI";
+      const body = `Name: ${name}
+Organization: ${organization}
+Role: ${role}
+Email: ${email}
+Phone: ${phone}
+
+Message:
+${message}`;
+
+      // Create mailto link
+      const mailtoLink = `mailto:abdulmujeeb@respai.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
       setTimeout(() => {
         loading.style.display = 'none';
         successMessage.style.display = 'block';
         document.getElementById('contactForm').reset();
-      }, 2000);
+      }, 1000);
     });
 
     // Smooth scrolling
